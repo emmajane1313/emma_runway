@@ -4,7 +4,7 @@ import { FetchResult, gql } from "@apollo/client";
 const COLLECTION = gql`
   query ($title: String!) {
     collectionCreateds(
-      where: { metadata_: { title_includes_nocase: $title } }
+      where: { metadata_: { title_contains_nocase: $title } }
     ) {
       uri
       collectionId

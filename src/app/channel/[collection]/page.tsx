@@ -14,7 +14,7 @@ export const generateMetadata = async ({
 }): Promise<Metadata> => {
   const { collection } = await params;
   let data = await getCollection(
-    decodeURIComponent(collection)?.replaceAll("-", " ")
+    decodeURIComponent(collection)?.replaceAll("-", " ")?.replaceAll("_", ",")
   );
 
   const coll = data?.data?.collectionCreateds?.[0];
@@ -57,11 +57,10 @@ export default async function Channel({
 
   const { collection } = await params;
   let data = await getCollection(
-    decodeURIComponent(collection)?.replaceAll("-", " ")
+    decodeURIComponent(collection)?.replaceAll("-", " ")?.replaceAll("_", ",")
   );
 
-  const coll = data?.data?.collectionCreateds?.[0];
-
+  let coll = data?.data?.collectionCreateds?.[0];
   if (!coll?.metadata && coll?.uri) {
     const json = await fetch(
       `${INFURA_GATEWAY}/ipfs/${coll?.uri?.split("ipfs://")?.[1]}`
@@ -69,10 +68,18 @@ export default async function Channel({
     coll.metadata = await json.json();
   }
 
+  coll = {
+    ...coll,
+    metadata: {
+      ...coll?.metadata,
+      config: JSON.parse(coll?.metadata?.config),
+    },
+  };
+
   return (
     <>
       <CollectionEntry collection={coll} dict={dict} lang={"en"} />
-      <ModalsEntry dict={dict} lang={"en"}  />
+      <ModalsEntry dict={dict} lang={"en"} />
     </>
   );
 }

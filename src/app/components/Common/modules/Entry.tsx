@@ -6,6 +6,7 @@ import Image from "next/image";
 import useIdioma from "../hooks/useIdioma";
 import useCollections from "../hooks/useCollections";
 import { ModalContext } from "@/app/providers";
+import { useRouter } from "next/navigation";
 
 const Entry: FunctionComponent<{ dict: any; lang: string }> = ({
   dict,
@@ -14,7 +15,7 @@ const Entry: FunctionComponent<{ dict: any; lang: string }> = ({
   const contexto = useContext(ModalContext);
   const { changeLanguage } = useIdioma();
   const { cargando, handleMoreNFTs, hasMore, moreCargando } = useCollections();
-
+  const router = useRouter();
   return (
     <div className="w-full flex h-screen relative">
       <video
@@ -34,7 +35,9 @@ const Entry: FunctionComponent<{ dict: any; lang: string }> = ({
               lang == "ar" && "font-vibes text-xl sm:text-3xl"
             }`}
           >
-            <div className="relative w-fit h-fit flex text-center">{dict?.runway}</div>
+            <div className="relative w-fit h-fit flex text-center">
+              {dict?.runway}
+            </div>
             <div className="relative w-fit h-fit flex">
               <div
                 className={`relative w-4 h-4 rotate-180 flex cursor-pointer`}
@@ -52,7 +55,7 @@ const Entry: FunctionComponent<{ dict: any; lang: string }> = ({
           </div>
           <h1
             className="cursor-pointer flex w-fit h-fit hover:text-violet-400 text-center"
-            onClick={() => window.open("https://emmajanemackinnonlee.ai/")}
+            onClick={() => router.push("/info/")}
           >
             Emma-Jane MacKinnon-Lee
           </h1>
@@ -72,7 +75,7 @@ const Entry: FunctionComponent<{ dict: any; lang: string }> = ({
                               loop
                               poster="/images/glittergirl.png"
                               draggable={false}
-                              className="relative animate-pulse flex w-full h-40 sm:h-48 object-cover rounded-lg transition-transform bg-gradient-to-r from-black to-violet-500 duration-300 hover:scale-95"
+                              className="relative animate-pulse flex w-full h-40 sm:h-48 object-cover rounded-lg transition-transform mix-blend-color-dodge duration-300 hover:scale-95"
                             >
                               <source src="/videos/glittergirl.mp4" />
                             </video>

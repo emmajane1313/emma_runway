@@ -22,7 +22,6 @@ const useCollections = () => {
     try {
       const data = await getCollections(0);
       const orders = await getOrders(address!);
-console.log(data)
       context?.setOrders(orders?.data?.orderCreateds);
 
       context?.setDrops(

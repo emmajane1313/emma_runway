@@ -8,5 +8,7 @@
   "prompt": "Prompt",
   "collect": "Coletar",
   "error": "Algo deu errado :/ Tentar novamente?",
-  "success": "Agora são todos seus!"
+  "success": "Agora são todos seus!",
+  "holi": "Oi gente",
+  "info": "Sou Emma-Jane MacKinnon-Lee. Crio fluxos avançados no ComfyUI com Wan2.1, loops de img2video costurados via gguf e diffusion, com transferências de estilo zumbindo ao fundo. Treino meus próprios LoRAs localmente, ouvindo sempre o barulho da máquina quase explodindo. Aqui vai um pouco do que andei criando. Às vezes, é só pra ver até onde o estranho pode ir antes de quebrar."
 }

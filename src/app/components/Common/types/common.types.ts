@@ -3,8 +3,8 @@ export interface VideoRowProps {
 }
 
 export interface Drop {
-  dropUri: string;
-  dropMetadata: {
+  uri: string;
+  metadata: {
     title: string;
     cover: string;
   };

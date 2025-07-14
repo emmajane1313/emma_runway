@@ -12,78 +12,12 @@ const CollectionEntry: FunctionComponent<{
   dict: any;
   lang: string;
   collection: Collection;
-}> = ({
-  dict,
-  lang,
-  collection = {
-    hasCollected: true,
-    tokensSold: 0,
-    dropMetadata: {
-      title: "Ephemera",
-      cover: "ipfs://QmSagYMLEFGUMhd8Tf6eV8iEAL7ws1jKbTAjfWD8d92STr",
-    },
-    dropUri: "",
-    uri: "",
-    edition: "5",
-    collectionId: "1",
-    prices: [
-      "100000000000000000000",
-      "33636057850000000",
-      "2150000000000000000",
-    ],
-    acceptedTokens: TOKENS.map((tok) => tok?.contract),
-    metadata: {
-      title: "Utcai Couture",
-      description: "Divat kiált a betonon.",
-      config: {
-        model: "wan2.1-i2v-14b-480p-Q4_K_M.gguf",
-        prompt:
-          "Three girls wearing high fashion streetwear walk fast along the pavement, slightly bumping into each other as the camera keeps pace in front of them, like a shaky hand held iphone.",
-        workflow: "Wan2.1 - IMG TO VIDEO",
-        hardware:
-          "4090, 24gb vram, i9-13900kf cpu, 128gb ddr5 ram @ 5200 mt/s, windows 11",
-      },
-      cover: "ipfs://QmRtrF2ANmTG1ufrT3K47hjHFABUsLMQ41uwzgLLohRqv8",
-      video: "ipfs://QmRAmpe5STKvN2GpnEPnVcny19GKoiGxby5VXDzSWF9MvP",
-    },
-  },
-}) => {
+}> = ({ dict, lang, collection }) => {
   const { address } = useAccount();
   const { handlePurchase, purchaseLoading, buyDetails, setBuyDetails } =
-    usePurchase(address, {
-      hasCollected: true,
-      tokensSold: 0,
-      dropMetadata: {
-        title: "Ephemera",
-        cover: "ipfs://QmSagYMLEFGUMhd8Tf6eV8iEAL7ws1jKbTAjfWD8d92STr",
-      },
-      dropUri: "",
-      uri: "",
-      edition: "5",
-      collectionId: "1",
-      prices: [
-        "100000000000000000000",
-        "33636057850000000",
-        "2150000000000000000",
-      ],
-      acceptedTokens: TOKENS.map((tok) => tok?.contract),
-      metadata: {
-        title: "Utcai Couture",
-        description: "Divat kiált a betonon.",
-        config: {
-          model: "wan2.1-i2v-14b-480p-Q4_K_M.gguf",
-          prompt:
-            "Three girls wearing high fashion streetwear walk fast along the pavement, slightly bumping into each other as the camera keeps pace in front of them, like a shaky hand held iphone.",
-          workflow: "Wan2.1 - IMG TO VIDEO",
-          hardware:
-            "4090, 24gb vram, i9-13900kf cpu, 128gb ddr5 ram @ 5200 mt/s, windows 11",
-        },
-        cover: "ipfs://QmRtrF2ANmTG1ufrT3K47hjHFABUsLMQ41uwzgLLohRqv8",
-        video: "ipfs://QmRAmpe5STKvN2GpnEPnVcny19GKoiGxby5VXDzSWF9MvP",
-      },
-    });
+    usePurchase(address, collection);
   return (
-    <div className="w-full flex h-screen relative text-white">
+    <div className="w-full flex h-screen relative text-white bg-[#E725C6]">
       <video
         muted
         autoPlay
@@ -92,7 +26,7 @@ const CollectionEntry: FunctionComponent<{
           collection?.metadata?.cover?.split("ipfs://")?.[1]
         }`}
         draggable={false}
-        className="absolute opacity-5 flex w-full h-full object-cover"
+        className="absolute flex w-full h-full object-cover opacity-30"
       >
         <source
           src={`${INFURA_GATEWAY_INTERNAL}${
@@ -100,11 +34,20 @@ const CollectionEntry: FunctionComponent<{
           }`}
         />
       </video>
+        <div className="absolute top-0 left-0 w-full flex h-full bg-black/90"></div>
       <div className="relative w-full h-screen flex flex-col gap-5 items-center justify-start py-8 px-2 overflow-y-auto">
-        <div className="relative w-fit h-fit flex font-shine text-base sm:text-xl text-center">
-          {collection?.metadata?.title}
+        <div
+          className={`relative w-fit h-fit flex font-shine text-base sm:text-xl text-center ${
+            !collection && "animate-pulse"
+          }`}
+        >
+          {!collection ? "☆☆☆☆☆" : collection?.metadata?.title}
         </div>
-        <div className="relative w-fit h-fit flex">
+        <div
+          className={`relative w-fit h-fit flex ${
+            !collection && "animate-pulse"
+          }`}
+        >
           <video
             muted
             autoPlay
@@ -142,8 +85,8 @@ const CollectionEntry: FunctionComponent<{
           </div>
           <div className="relative w-fit h-fit flex items-center justify-center">
             <input
-              className="relative border border-violet-400 w-16 h-8 p-1 text-sm focus:outline-none rounded-sm mix-blend-color-dodge"
-              placeholder="1"
+              className="relative border border-violet-400 w-16 h-8 p-1 text-sm text-violet-100 focus:outline-none rounded-sm mix-blend-color-dodge"
+              placeholder={"1"}
               type="number"
               disabled={purchaseLoading}
               min={1}
@@ -213,7 +156,7 @@ const CollectionEntry: FunctionComponent<{
           </div>
           <div className="relative w-fit h-fit flex">
             <div
-              className={`relative w-32 mix-blend-color-dodge border-2 border-violet-400 h-10 rounded-sm flex items-center justify-center text-center ${
+              className={`relative w-32 mix-blend-color-dodge border-2 border-violet-400 h-10 rounded-sm flex items-center justify-center  text-violet-100 text-center  ${
                 !purchaseLoading && "cursor-pointer hover:opacity-70"
               }`}
               onClick={() => !purchaseLoading && address && handlePurchase()}
@@ -230,7 +173,11 @@ const CollectionEntry: FunctionComponent<{
             </div>
           </div>
 
-          <div className={`relative h-fit flex flex-col gap-4 w-full sm:w-1/2 pt-6 ${lang == "ar" ? "font-vibes text-xs" : "font-dog text-xxs"}`}>
+          <div
+            className={`relative h-fit flex flex-col gap-4 w-full sm:w-1/2 pt-6 ${
+              lang == "ar" ? "font-vibes text-xs" : "font-dog text-xxs"
+            }`}
+          >
             <div className="relative w-fit h-fit flex flex-col gap-1">
               <div
                 className="relative w-fit h-fit flex"

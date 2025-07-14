@@ -8,5 +8,7 @@
   "prompt": "Prompt",
   "collect": "Collect",
   "error": "Something went wrong :/ Try again?",
-  "success": "They're all yours now!"
+  "success": "They're all yours now!",
+  "holi": "Hey",
+  "info": "I'm Emma-Jane MacKinnon-Lee. I build advanced ComfyUI workflows with Wan2.1, img2video loops stitched through gguf think diffusion, style transfer humming in the background. I train custom LoRAs locally, constantly hearing that whine of my rig running past 100%. Here’s a glimpse of what I’ve been creating. Sometimes it’s just seeing how far the uncanny can stretch before it snaps."
 }

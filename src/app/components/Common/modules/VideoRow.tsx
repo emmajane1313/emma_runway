@@ -8,26 +8,27 @@ const VideoRow: FunctionComponent<VideoRowProps> = ({ drop }) => {
   return (
     <div className="mb-8">
       <h2 className="text-white text-base sm:text-2xl uppercase font-glit mb-4 px-6">
-        {drop?.dropMetadata?.title}
+        {drop?.metadata?.title}
       </h2>
       <div className="overflow-x-auto scrollbar-hide">
         <div className="flex gap-4 px-6 pb-4 w-max">
           {drop?.collections?.map((video, i) => (
             <div key={i} className="relative w-fit h-fit flex">
               <div className="flex relative h-fit w-60 sm:w-80 cursor-pointer flex-col">
-                <div className="relative w-full h-fit flex">
+                <div className="relative w-full h-fit flex bg-[#E725C6] hover:scale-95 rounded-lg">
                   <video
                     draggable={false}
                     poster={`${INFURA_GATEWAY_INTERNAL}${
                       video?.metadata?.cover?.split("ipfs://")?.[1]
                     }`}
-                    className={`relative flex w-full h-40 sm:h-48 object-cover rounded-lg transition-transform bg-black duration-300 hover:scale-95`}
+                    className={`relative flex w-full h-40 sm:h-48 object-cover rounded-lg transition-transform hover:mix-blend-color-dodge duration-300`}
                     onClick={() =>
                       router.push(
                         "/channel/" +
                           video?.metadata?.title
                             ?.toLowerCase()
                             ?.replaceAll(" ", "-")
+                            ?.replaceAll(",", "_")
                       )
                     }
                     muted
