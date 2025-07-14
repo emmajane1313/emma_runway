@@ -12,7 +12,7 @@ export async function GET() {
   const data = await getCollections(0);
 
   const imagesXml = () =>
-    data?.data?.collectionCreateds
+    data?.data?.drops
       ?.flatMap((col: any) => col?.collections)
       ?.map(
         (col: any) =>
