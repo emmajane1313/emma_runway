@@ -1,0 +1,12 @@
+{
+  "runway": "PASARELA",
+  "nothing": "¿Te has perdido navegando hasta un 404? Reinicia aquí.",
+  "edition": "Edición Máxima:",
+  "workflow": "Flujo de Trabajo",
+  "model": "Modelo",
+  "hardware": "Hardware",
+  "prompt": "Prompt",
+  "collect": "Coleccionar",
+  "error": "Algo salió mal :/ ¿Intentar de nuevo?",
+  "success": "¡Ahora son todos tuyos!"
+}

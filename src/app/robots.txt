@@ -1,0 +1,5 @@
+User-Agent: *
+Allow: /
+
+
+Sitemap: https://emmajanemackinnonlee-runway.com/sitemap.xml
