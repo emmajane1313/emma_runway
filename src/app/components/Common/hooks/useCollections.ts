@@ -3,7 +3,6 @@ import { ModalContext } from "@/app/providers";
 import { getCollections } from "../../../../../graphql/queries/getCollections";
 import { getOrders } from "../../../../../graphql/queries/getOrders";
 import { useAccount } from "wagmi";
-import { TOKENS } from "@/app/lib/constantes";
 
 const useCollections = () => {
   const context = useContext(ModalContext);
@@ -23,7 +22,7 @@ const useCollections = () => {
     try {
       const data = await getCollections(0);
       const orders = await getOrders(address!);
-
+console.log(data)
       context?.setOrders(orders?.data?.orderCreateds);
 
       context?.setDrops(
@@ -87,50 +86,8 @@ const useCollections = () => {
 
   useEffect(() => {
     if (Number(context?.drops?.length) < 1) {
-      context?.setDrops([
-        {
-          dropMetadata: {
-            title: "Ephemera",
-            cover: "ipfs://QmSagYMLEFGUMhd8Tf6eV8iEAL7ws1jKbTAjfWD8d92STr",
-          },
-          dropUri: "",
-          collections: [
-            {
-              hasCollected: true,
-              tokensSold: 0,
-              dropMetadata: {
-                title: "Ephemera",
-                cover: "ipfs://QmSagYMLEFGUMhd8Tf6eV8iEAL7ws1jKbTAjfWD8d92STr",
-              },
-              dropUri: "",
-              uri: "",
-              edition: "5",
-              collectionId: "1",
-              prices: [
-                "100000000000000000000",
-                "33636057850000000",
-                "2150000000000000000",
-              ],
-              acceptedTokens: TOKENS.map((tok) => tok?.contract),
-              metadata: {
-                title: "Utcai Couture",
-                description: "Divat kiált a betonon.",
-                config: {
-                  model: "wan2.1-i2v-14b-480p-Q4_K_M.gguf",
-                  prompt:
-                    "Three girls wearing high fashion streetwear walk fast along the pavement, slightly bumping into each other as the camera keeps pace in front of them, like a shaky hand held iphone.",
-                  workflow: "Wan2.1 - IMG TO VIDEO",
-                  hardware:
-                    "4090, 24gb vram, i9-13900kf cpu, 128gb ddr5 ram @ 5200 mt/s, windows 11",
-                },
-                cover: "ipfs://QmRtrF2ANmTG1ufrT3K47hjHFABUsLMQ41uwzgLLohRqv8",
-                video: "ipfs://QmRAmpe5STKvN2GpnEPnVcny19GKoiGxby5VXDzSWF9MvP",
-              },
-            },
-          ],
-        },
-      ]);
-      // handleNFTs();
+    
+      handleNFTs();
     }
   }, []);
 
