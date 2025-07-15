@@ -31,7 +31,7 @@ const InfoEntry: FunctionComponent<{ dict: any; lang: string }> = ({
           onClick={() => router.push("/")}
         />
       </div>
-      <div className="relative w-full h-fit flex flex-col gap-3 items-center justify-center px-3 py-4 text-xl">
+      <div className="relative w-full h-screen flex flex-col gap-3 items-center justify-center px-3 py-4 text-xl overflow-y-auto">
         <div
           className="relative w-fit h-fit flex font-love"
           dir={lang == "ar" ? "rtl" : "ltr"}
@@ -55,6 +55,30 @@ const InfoEntry: FunctionComponent<{ dict: any; lang: string }> = ({
           dir={lang == "ar" ? "rtl" : "ltr"}
         >
           {dict?.info}
+        </div>
+        <div className="relative w-fit h-fit flex flex-row gap-2 flex-wrap">
+          {[
+            {
+              nombre: "DIGITALAX",
+              enlace: "https://emmajanemackinnonlee-digitalax.com/",
+            },
+            {
+              nombre: "F3Manifesto",
+              enlace: "https://emmajanemackinnonlee-f3manifesto.com/",
+            },
+            {
+              nombre: "Forum",
+              enlace: "https://emmajanemackinnon.com/",
+            },
+          ].map((el, i) => (
+            <div
+              className="relative w-fit h-fit flex cursor-pointer underline underline-offset-3 font-vibes text-sm hover:opacity-80"
+              key={i}
+              onClick={() => window.open(el?.enlace)}
+            >
+              {el?.nombre}
+            </div>
+          ))}
         </div>
       </div>
     </div>
