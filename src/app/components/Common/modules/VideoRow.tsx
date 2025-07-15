@@ -29,6 +29,7 @@ const VideoRow: FunctionComponent<VideoRowProps> = ({ drop }) => {
                             ?.toLowerCase()
                             ?.replaceAll(" ", "-")
                             ?.replaceAll(",", "_")
+                            ?.replaceAll("/", "—")
                       )
                     }
                     muted

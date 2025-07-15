@@ -4,6 +4,7 @@ import { FunctionComponent, useContext } from "react";
 import Image from "next/image";
 import { ModalContext } from "@/app/providers";
 import { useRouter } from "next/navigation";
+import { PiArrowBendDoubleUpLeftLight } from "react-icons/pi";
 
 const InfoEntry: FunctionComponent<{ dict: any; lang: string }> = ({
   dict,
@@ -23,7 +24,13 @@ const InfoEntry: FunctionComponent<{ dict: any; lang: string }> = ({
       >
         <source src="/videos/emmajanemackinnonlee_portrait.mp4" />
       </video>
-
+      <div className="absolute top-4 left-4 w-full h-fit flex items-start justify-start">
+        <PiArrowBendDoubleUpLeftLight
+          color="white"
+          className="cursor-pointer"
+          onClick={() => router.push("/")}
+        />
+      </div>
       <div className="relative w-full h-fit flex flex-col gap-3 items-center justify-center px-3 py-4 text-xl">
         <div
           className="relative w-fit h-fit flex font-love"

@@ -7,6 +7,8 @@ import usePurchase from "../hooks/usePurchase";
 import { useAccount } from "wagmi";
 import { INFURA_GATEWAY_INTERNAL, TOKENS } from "@/app/lib/constantes";
 import { AiOutlineLoading } from "react-icons/ai";
+import { PiArrowBendDoubleUpLeftLight } from "react-icons/pi";
+import { useRouter } from "next/navigation";
 
 const CollectionEntry: FunctionComponent<{
   dict: any;
@@ -14,6 +16,7 @@ const CollectionEntry: FunctionComponent<{
   collection: Collection;
 }> = ({ dict, lang, collection }) => {
   const { address } = useAccount();
+  const router = useRouter();
   const { handlePurchase, purchaseLoading, buyDetails, setBuyDetails } =
     usePurchase(address, collection);
   return (
@@ -34,8 +37,15 @@ const CollectionEntry: FunctionComponent<{
           }`}
         />
       </video>
-        <div className="absolute top-0 left-0 w-full flex h-full bg-black/90"></div>
+      <div className="absolute top-0 left-0 w-full flex h-full bg-black/90"></div>
       <div className="relative w-full h-screen flex flex-col gap-5 items-center justify-start py-8 px-2 overflow-y-auto">
+        <div className="relative w-full h-fit flex items-start justify-start">
+          <PiArrowBendDoubleUpLeftLight
+            color="white"
+            className="cursor-pointer"
+            onClick={() => router.push("/")}
+          />
+        </div>
         <div
           className={`relative w-fit h-fit flex font-shine text-base sm:text-xl text-center ${
             !collection && "animate-pulse"

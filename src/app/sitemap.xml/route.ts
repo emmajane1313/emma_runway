@@ -20,19 +20,22 @@ export async function GET() {
       <url>
         <loc>${baseUrl}/channel/${col?.metadata?.title
             ?.replaceAll(" ", "-")
-            ?.replaceAll(",", "_")}/</loc>
+            ?.replaceAll(",", "_")
+            ?.replaceAll("/", "—")}/</loc>
         ${locales
           .map(
             (locale) => `
           <xhtml:link rel="alternate" hreflang="${locale}" href="${baseUrl}/${locale}/channel/${col?.metadata?.title
               ?.replaceAll(" ", "-")
-              ?.replaceAll(",", "_")}/" />
+              ?.replaceAll(",", "_")
+              ?.replaceAll("/", "—")}/" />
         `
           )
           .join("")}
         <xhtml:link rel="alternate" hreflang="x-default" href="${baseUrl}/channel/${col?.metadata?.title
             ?.replaceAll(" ", "-")
-            ?.replaceAll(",", "_")}" />
+            ?.replaceAll(",", "_")
+            ?.replaceAll("/", "—")}" />
   <image:image>
             <image:loc>${INFURA_GATEWAY_INTERNAL}${
             col?.metadata?.cover?.split("ipfs://")?.[1]

@@ -15,7 +15,10 @@ export const generateMetadata = async ({
 }): Promise<Metadata> => {
   const { collection } = await params;
   let data = await getCollection(
-    decodeURIComponent(collection)?.replaceAll("-", " ")?.replaceAll("_", ",")
+    decodeURIComponent(collection)
+      ?.replaceAll("-", " ")
+      ?.replaceAll("_", ",")
+      ?.replaceAll("—", "/")
   );
 
   const coll = data?.data?.collectionCreateds?.[0];
@@ -58,7 +61,10 @@ export default async function Channel({
   const { lang, collection } = await params;
   const dict = await (getDictionary as (locale: any) => Promise<any>)(lang);
   let data = await getCollection(
-    decodeURIComponent(collection)?.replaceAll("-", " ")?.replaceAll("_", ",")
+    decodeURIComponent(collection)
+      ?.replaceAll("-", " ")
+      ?.replaceAll("_", ",")
+      ?.replaceAll("—", "/")
   );
 
   let coll = data?.data?.collectionCreateds?.[0];

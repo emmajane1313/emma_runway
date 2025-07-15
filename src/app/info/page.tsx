@@ -1,5 +1,5 @@
 import { getDictionary } from "@/app/[lang]/dictionaries";
-import { INFURA_GATEWAY, LOCALES } from "@/app/lib/constantes";
+import { LOCALES } from "@/app/lib/constantes";
 import { Metadata } from "next";
 import InfoEntry from "../components/Info/modules/InfoEntry";
 
