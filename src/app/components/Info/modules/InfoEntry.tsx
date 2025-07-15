@@ -24,7 +24,7 @@ const InfoEntry: FunctionComponent<{ dict: any; lang: string }> = ({
       >
         <source src="/videos/emmajanemackinnonlee_portrait.mp4" />
       </video>
-      <div className="absolute top-4 left-4 w-full h-fit flex items-start justify-start">
+      <div className="absolute top-4 left-4 w-full h-fit flex items-start justify-start z-10">
         <PiArrowBendDoubleUpLeftLight
           color="white"
           className="cursor-pointer"
