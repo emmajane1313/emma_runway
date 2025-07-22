@@ -4,7 +4,7 @@ export const INFURA_GATEWAY: string = "https://thedial.infura-ipfs.io";
 
 export const LOCALES: string[] = ["en", "es", "pt", "ar"];
 
-export const RUNWAY_MARKET: `0x${string}` = "0x7c112bAf5B2B1211a4D98585459B1b02E0769099";
+export const RUNWAY_MARKET: `0x${string}` = "0x378f66b6d10582d989B3A123D5367624b2a14A6f";
 
 export const TOKENS: { symbol: string; contract: string; image: string }[] = [
   {
